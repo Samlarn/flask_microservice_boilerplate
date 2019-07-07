@@ -1,5 +1,2 @@
-
-from application.rest.helloWorldEndpoint import HelloWorldEndpoint
-
-helloWorldRest = HelloWorldEndpoint
+# rest init file
 

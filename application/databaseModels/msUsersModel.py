@@ -3,7 +3,6 @@ from passlib.hash import pbkdf2_sha256 as sha256
 from datetime import datetime
 
 
-
 class MSUsersModel(db.Model):
     __tablename__ = 'msusers'
 
@@ -18,7 +17,7 @@ class MSUsersModel(db.Model):
             return {
                 'msname': x.msname,
                 'password': x.password,
-                'registration_date': x.registration_date
+                'registration_date': str(x.registration_date)
             }
         return {'users': list(map(lambda x: to_json(x), MSUsersModel.query.all()))}
 
