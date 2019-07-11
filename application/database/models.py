@@ -21,26 +21,39 @@ class MSUsersModel(db.Model):
             }
         return {'users': list(map(lambda x: to_json(x), MSUsersModel.query.all()))}
 
-
     @classmethod
     def find_by_username(cls, msname):
         return cls.query.filter_by(msname=msname).first()
     
-
     @staticmethod
     def generate_hash(password):
         return sha256.hash(password)
     
-
     @staticmethod
     def verify_hash(password, hash):
         return sha256.verify(password, hash)
     
-
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
+
+
+
+class RevokedTokenModel(db.Model):
+    __tablename__ = 'revoked_tokens'
+
+    id = db.Column(db.Integer, primary_key = True)
+    jti = db.Column(db.String(120))
     
+    def add(self):
+        db.session.add(self)
+        db.session.commit()
+    
+    @classmethod
+    def is_jti_blacklisted(cls, jti):
+        query = cls.query.filter_by(jti = jti).first()
+        return bool(query)
+
     
     def __repr__(self):
         return '<msuser {}>'.format(self.msname)

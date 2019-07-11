@@ -15,6 +15,6 @@ class Config(object):
 
     MS_ID = os.environ.get('MS_ID') or '1337'
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://foo:bar@localhost/ms_template_db'#os.environ.get('SQLALCHEMY_DATABASE_URI') or 'sqlite:///databaseModels/msApp.db'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI') or 'sqlite:///msApp.db' #'postgresql+psycopg2://foo:bar@localhost/ms_template_db'
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
