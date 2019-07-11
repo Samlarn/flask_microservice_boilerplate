@@ -7,6 +7,7 @@ from application.rest import helloWorldResources
 def index():
     return render_template('index.html')
 
+
 @app.route('/info')
 def info():
     return 'info'
